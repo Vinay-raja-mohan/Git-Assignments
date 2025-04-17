@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function formatCurrency(amount, currencyCode) {
+  try {
+
+    const formatter = new Intl.NumberFormat(undefined, {
+      style: 'currency',
+      currency: currencyCode,
+    });
+
+    return formatter.format(amount);
+  } catch (error) {
+    return `Invalid currency code: ${currencyCode}`;
+  }
+}
+
+// Example Usage
+let amounts;
+let currency;
+
+while (true) {
+      amounts = prompt("Enter the amount or type 'quit' to exit:");
+      if (amounts === "quit") break;
+
+      currency = prompt("Enter the currency code (e.g., USD, INR) or type 'quit' to exit:");
+      if (currency === "quit") break;
+
+      const amountNum = parseFloat(amounts);
+      if (isNaN(amountNum)) {
+        console.log("Invalid amount entered.");
+        continue;
+      }
+
+      console.log(formatCurrency(amountNum, currency)); // $1,234,567.89
+}
+
+    </script>
+    
+</body>
+</html>

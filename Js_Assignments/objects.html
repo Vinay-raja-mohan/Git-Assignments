@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objects</title>
+</head>
+<body>
+  <script>
+    // Book Object
+function Book(title, author, ISBN) {
+    this.title = title;
+    this.author = author;
+    this.ISBN = ISBN;
+    this.isBorrowed = false;
+}
+
+// Library Object
+function Library() {
+    this.books = [];
+    this.addBook = (book) => this.books.push(book);
+    this.findBookByISBN = (isbn) => this.books.find(book => book.ISBN === isbn);
+    this.listAvailableBooks = () => this.books.filter(book => !book.isBorrowed);
+    this.listBorrowedBooks = () => this.books.filter(book => book.isBorrowed);
+}
+
+// Example Usage
+const library = new Library();
+const book1 = new Book("JavaScript: The Good Parts", "Douglas Crockford", "9780596517748");
+const book2 = new Book("Eloquent JavaScript", "Marijn Haverbeke", "9781593279509");
+
+library.addBook(book1);
+library.addBook(book2);
+
+// Borrow a book
+book1.isBorrowed = true;
+
+console.log("Available Books:", library.listAvailableBooks());
+console.log("Borrowed Books:", library.listBorrowedBooks());
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group By Category</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .result {
+      margin-top: 20px;
+    }
+
+    .category {
+      margin-bottom: 20px;
+    }
+
+    .category-title {
+      font-weight: bold;
+      font-size: 18px;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .item {
+      margin-left: 20px;
+      color: #374151;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Group Products by Category</h2>
+    <button onclick="displayGroupedProducts()">Group Items</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const products = [
+      { name: 'Laptop', category: 'Electronics', price: 1200 },
+      { name: 'T-Shirt', category: 'Apparel', price: 25 },
+      { name: 'Mouse', category: 'Electronics', price: 30 },
+      { name: 'Jeans', category: 'Apparel', price: 70 }
+    ];
+
+    function groupByCategory(items, categoryKey) {
+      const grouped = {};
+      for (const item of items) {
+        const key = item[categoryKey];
+        if (!grouped[key]) {
+          grouped[key] = [];
+        }
+        grouped[key].push(item);
+      }
+      return grouped;
+    }
+
+    function displayGroupedProducts() {
+      const grouped = groupByCategory(products, 'category');
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = '';
+
+      for (const category in grouped) {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'category';
+
+        const title = document.createElement('div');
+        title.className = 'category-title';
+        title.textContent = category;
+        categoryDiv.appendChild(title);
+
+        grouped[category].forEach(item => {
+          const itemDiv = document.createElement('div');
+          itemDiv.className = 'item';
+          itemDiv.textContent = `• ${item.name} ($${item.price})`;
+          categoryDiv.appendChild(itemDiv);
+        });
+
+        resultDiv.appendChild(categoryDiv);
+      }
+    }
+  </script>
+</body>
+</html>

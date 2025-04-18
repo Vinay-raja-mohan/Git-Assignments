@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Variable Scope in JavaScript</title>
+</head>
+<body>
+  <script>
+    let globalVar = "Global";
+    function showGlobal() { console.log(globalVar); }
+    showGlobal();
+    console.log(globalVar);
+
+    function localExample() {
+      let localVar = "Local";
+      console.log(localVar);
+    }
+    localExample();
+
+    { let blockVar = "Block"; console.log(blockVar); }
+
+    let name = "Outer";
+    function shadowExample() {
+      let name = "Inner";
+      console.log(name);
+    }
+    shadowExample();
+    console.log(name);
+  </script>
+</body>
+</html>

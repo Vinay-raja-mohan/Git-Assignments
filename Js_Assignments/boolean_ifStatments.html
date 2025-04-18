@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boolean and if statments</title>
+</head>
+<body>
+  <script>
+      function evaluateConditions(obj) {
+  if (obj.age > 18 && obj.hasLicense) {
+    console.log("Eligible to drive");
+  }
+  
+  if (obj.temperature > 30 || obj.humidity > 70) {
+    console.log("Warning: High discomfort level");
+  }
+  
+  if ((obj.role === "admin" || obj.role === "editor") && obj.isActive) {
+    console.log("Access granted");
+  } 
+  
+  if (!obj.isVerified && obj.accountAge < 1) {
+    console.log("Verification required for new accounts");
+  }
+  
+  if ((obj.subscription === "premium" && obj.balance > 0) || obj.isTrial) {
+    console.log("Premium features unlocked");
+  }
+  
+  if (obj.points >= 1000 && !(obj.isBanned)) {
+    console.log("Eligible for rewards");
+  }
+  
+  if (obj.country !== "restricted" && (obj.loginAttempts <= 3 || obj.isTrusted)) {
+    console.log("Login successful");
+  }
+
+  console.log("Conditions not met");
+}
+ 
+const exampleObj = {
+  age: 20,
+  hasLicense: true,
+  temperature: 28,
+  humidity: 60,
+  role: "editor",
+  isActive: true,
+  isVerified: false,
+  accountAge: 0,
+  subscription: "premium",
+  balance: 50,
+  isTrial: false,
+  points: 1200,
+  isBanned: false,
+  country: "USA",
+  loginAttempts: 2,
+  isTrusted: true
+};
+
+console.log(evaluateConditions(exampleObj));
+    </script>
+    
+</body>
+</html>

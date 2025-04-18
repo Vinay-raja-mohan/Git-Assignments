@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM</title>
+</head>
+<body>
+  <div id="container">
+    <h1>My List</h1>
+    <ul id="myList">
+      <li class="item">Item 1</li>
+      <li class="item">Item 2</li>
+      <li class="item">Item 3</li>
+    </ul>
+    <button id="addButton">Add Item</button>
+  </div>
+
+  <script>
+    // Get elements
+    var list = document.getElementById("myList");
+    var button = document.getElementById("addButton");
+
+    // Function to remove an item
+    function removeItem() {
+      this.remove();
+    }
+
+    // When the button is clicked, add a new item
+    button.onclick = function() {
+      var li = document.createElement("li");
+      li.textContent = "New Item";
+      li.className = "item";
+      li.onclick = removeItem;
+      list.appendChild(li);
+    };
+
+    // Add click listener to all existing list items
+    var items = document.querySelectorAll(".item");
+    for (var i = 0; i < items.length; i++) {
+      items[i].onclick = removeItem;
+    }
+  </script>
+</body>
+</html>

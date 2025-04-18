@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Processor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px 40px;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Transaction Processor</h1>
+    <button onclick="processAndDisplay()">Process Transactions</button>
+    <div id="result" class="result"></div>
+  </div>
+
+  <script>
+    // The processTransactions function
+    function processTransactions(transactions) {
+      let balance = 0;
+      let totalDeposits = 0;
+      let totalWithdrawals = 0;
+
+      for (const transaction of transactions) {
+        if (transaction.type === 'deposit') {
+          balance += transaction.amount;
+          totalDeposits += transaction.amount;
+        } else if (transaction.type === 'withdrawal') {
+          balance -= transaction.amount;
+          totalWithdrawals += transaction.amount;
+        }
+      }
+
+      return {
+        finalBalance: balance,
+        totalDeposits: totalDeposits,
+        totalWithdrawals: totalWithdrawals
+      };
+    }
+
+    // Sample transactions array
+    const transactions = [
+      { type: 'deposit', amount: 1000 },
+      { type: 'withdrawal', amount: 200 },
+      { type: 'deposit', amount: 500 },
+      { type: 'withdrawal', amount: 100 }
+    ];
+
+    // Function to process transactions and display results
+    function processAndDisplay() {
+      const result = processTransactions(transactions);
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `
+        <p><strong>Final Balance:</strong> $${result.finalBalance}</p>
+        <p><strong>Total Deposits:</strong> $${result.totalDeposits}</p>
+        <p><strong>Total Withdrawals:</strong> $${result.totalWithdrawals}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
